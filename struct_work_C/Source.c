@@ -40,22 +40,37 @@ int Prodavec(struct Product* stock, int stockSize, int* stockcount) {
 			tovar.ID = 100000 + (*stockcount) + 1; 
 			printf("Введите имя товара: ");
 			scanf("%s", tovar.name);
-			printf("\nВведите стоимость товара 2: ");
+			printf("\nВведите стоимость товара: ");
 			scanf_s("%f", &tovar.cost);
 			printf("\nВведите количество товара: ");
 			scanf_s("%d", &tovar.count);
 			addInStock(stock, stockSize, stockcount, tovar);
 		}
 		else if (n == 2) {
+            printf("Введите ID товара: ");
 			int tovar_id;
 			scanf_s("%d", &tovar_id);
-			for (int i = 0; i < stockcount; i++) {
-				if (stock[i].ID == tovar_id) {
-					char name[100];
-					gets(name);
-					strcpy(stock[i].name, name);
+			system("cls");
+			int m = 1;
+			while (m != 0) {
+				printf("1. Изменить название\n2. Изменить стоимость\n3. Изменить число\n0. Выход\nВаш выбор: ");
+				for (int i = 0; i < stockcount; i++) {
+					if (stock[i].ID == tovar_id) {
+						if (m == 1) {
+							char name[100];
+							gets(name);
+							strcpy(stock[i].name, name);
+						}
+						else if (m == 2) {
+							scanf_s("%f", &stock[i].cost);
+						}
+						else if (m == 3) {
+							scanf_s("%d", &stock[i].count);
+						}
+						
+					}
+					;
 				}
-				;
 			}
 		}
 	}
